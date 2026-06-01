@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BL/IND ARCHIVES</title>
+    <style>
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            font-family: 'Courier New', Courier, monospace;
+            padding: 20px;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            box-sizing: border-box;
+            text-shadow: 0 0 5px #000000;
+        }
+
+        .terminal {
+            width: 100%;
+            max-width: 600px;
+            border: 1px solid #000000;
+            padding: 20px;
+            background-color: #000000;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+        }
+
+        .header {
+            border-bottom: 1px dashed #000000;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+
+        .output {
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        
+        .home-image {
+            width: 100%;
+            max-width: 200px; 
+            display: block;
+            margin: 15px auto;
+            border: 1px solid #ffffff;
+            filter: grayscale(100%) contrast(200%); 
+        }
+
+        .home-video {
+            width: 100%;
+            max-width: 500px;
+            display: block;
+            margin: 15px auto;
+            border: 1px solid #ffffff;
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+        }
+
+        .input-area {
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .prompt {
+            margin-right: 10px;
+        }
+
+        input[type="text"] {
+            background: transparent;
+            border: none;
+            color: #ffffff;
+            font-family: inherit;
+            font-size: 1rem;
+            width: 100%;
+            outline: none;
+            text-shadow: 0 0 5px #ffffff;
+        }
+        
+        /* Hidden content to reveal on success */
+        #secret-content {
+            display: none;
+            border: 1px double #ffffff;
+            padding: 15px;
+            margin-top: 20px;
+            background-color: rgba(255, 255, 255, 0.05);
+            text-align: center; 
+        }
+
+        /* Success video style */
+        .secret-text {
+            margin: 10px 0;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1rem;
+            color: #00ff99;
+        }
+
+        .secret-popup {
+            display: none;
+            margin: 10px 0 0;
+            padding: 12px;
+            border: 1px solid #00ff99;
+            background: rgba(0, 255, 153, 0.1);
+            color: #ffffff;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        .secret-glitch {
+            animation: glitch-text 0.15s steps(2, end) infinite;
+        }
+
+        @keyframes glitch-text {
+            0% { opacity: 1; transform: translateX(0); }
+            20% { opacity: 0.8; transform: translateX(-2px); }
+            40% { opacity: 1; transform: translateX(2px); }
+            60% { opacity: 0.7; transform: translateX(-3px); }
+            80% { opacity: 1; transform: translateX(3px); }
+            100% { opacity: 1; transform: translateX(0); }
+        }
+
+        .secret-video-glitch {
+            animation: glitch-video 0.25s ease-in-out 4;
+        }
+
+        @keyframes glitch-video {
+            0% { transform: translate(0, 0) skew(0deg); }
+            20% { transform: translate(-6px, 2px) skew(-3deg); }
+            40% { transform: translate(5px, -3px) skew(3deg); }
+            60% { transform: translate(-4px, 3px) skew(-2deg); }
+            80% { transform: translate(6px, -1px) skew(2deg); }
+            100% { transform: translate(0, 0) skew(0deg); }
+        }
+
+        .clue-video {
+            width: 100%;
+            max-width: 500px;
+            margin-top: 15px;
+            border: 1px solid #ffffff;
+            display: none; /* hidden until unlocked */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="terminal">
+        <div class="header">
+            SECURE TERMINAL . UNAUTHORIZED ACCESS PROHIBITED<br>
+            DATE: 4/8/2019 . NODE: 0x99F 
+            SHOULD YOU BE HERE? Proceed with caution. This system is monitored and protected by BL/IND SECURITY PROTOCOLS. Return to homepage? 
+        </div>
+
+        <div class="output" id="log">
+            <p>> SYSTEM STATUS: LOCKED</p>
+            
+            <img src="blindimage.jpg" alt="BL/IND LOGO" class="home-image">
+
+            <video class="home-video" autoplay loop muted playsinline>
+                <source src="blindpills.mp4" type="video/mp4">
+            </video>
+
+            <p>> IF EMPLOYEE OF BL/IND INPUT DECRYPTION KEY TO PROCEED.</p>
+            <p style="color: #ff3333;">> GUESS.</p>
+        </div>
+
+        <div class="input-area" id="interactive-input">
+            <span class="prompt">USER@ROOT:$</span>
+            <input type="text" id="user-input" autocomplete="off" autofocus>
+        </div>
+
+        <div id="secret-content">
+            <p>> ACCESS GRANTED.</p>
+            <p id="secret-text" class="secret-text">> SECRET WORD: </p>
+            <p id="secret-popup" class="secret-popup"></p>
+            <p>> PLAYING ARCHIVE.MP4...</p>
+
+            <video id="clue-video1" class="clue-video" controls>
+                <source src="clue.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+
+            <video id="clue-video2" class="clue-video" controls>
+                <source src="clue2.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+
+            <video id="clue-video3" class="clue-video" controls>
+                <source src="clue3.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+
+            <video id="clue-video4" class="clue-video" controls>
+                <source src="clue4.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+
+            <video id="clue-video5" class="clue-video" controls>
+                <source src="clue5.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+
+            <video id="clue-video6" class="clue-video" controls>
+                <source src="clue6.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div>
+
+    <script>
+        const inputField = document.getElementById('user-input');
+        const logArea = document.getElementById('log');
+        const secretContent = document.getElementById('secret-content');
+        const inputArea = document.getElementById('interactive-input');
+
+        const secretText = document.getElementById('secret-text');
+        const secretPopup = document.getElementById('secret-popup');
+
+        const passwordMap = {
+            'dr death': { video: 'clue-video1', word: 'Deny.', popup: 'Go back home.' },
+            'killjoy': { video: 'clue-video2', word: '', popup: 'Y O U W I L L O B E Y' },
+            'bl/ind': {
+                video: 'clue-video3',
+                word: 'Welcome home!',
+                popup: 'Try our new products!',
+                glitch: {
+                    targetVideo: 'clue-video4',
+                    targetWord: 'SYSTEM OVERRIDE',
+                    targetPopup: 'ERROR: sequence corrupted. Redirecting...',
+                    delay: 10000
+                }
+            },
+            'password4': { video: 'clue-video4', word: 'CLUE FOUR', popup: 'Secret message four appears now.' },
+            'password5': { video: 'clue-video5', word: 'CLUE FIVE', popup: 'Secret message five appears now.' },
+            'password6': { video: 'clue-video6', word: 'CLUE SIX', popup: 'Secret message six appears now.' }
+        };
+
+        const successSound = new Audio('accessgranted.mp3');
+        const failureSound = new Audio('accessdenied.mp3');
+
+        function startGlitch(entry, originalVideo) {
+            if (!entry.glitch) return;
+
+            const delay = entry.glitch.delay || 10000;
+            const glitchStart = Math.max(delay - 600, 0);
+            const targetVideo = document.getElementById(entry.glitch.targetVideo);
+            targetVideo.style.display = 'none';
+
+            setTimeout(() => {
+                originalVideo.classList.add('secret-video-glitch');
+                secretPopup.classList.add('secret-glitch');
+                secretText.classList.add('secret-glitch');
+            }, glitchStart);
+
+            setTimeout(() => {
+                originalVideo.style.display = 'none';
+                originalVideo.pause();
+                originalVideo.classList.remove('secret-video-glitch');
+                secretPopup.classList.remove('secret-glitch');
+                secretText.classList.remove('secret-glitch');
+                secretText.textContent = `> SECRET WORD: ${entry.glitch.targetWord}`;
+                secretPopup.textContent = entry.glitch.targetPopup;
+                targetVideo.style.display = 'block';
+                targetVideo.play().catch(err => console.log('Video autoplay blocked: ', err));
+            }, delay);
+        }
+
+        inputField.addEventListener('keypress', function (e) {
+            if (e.key !== 'Enter') return;
+            const guess = inputField.value.trim().toLowerCase();
+            inputField.value = '';
+
+            if (guess in passwordMap) {
+                successSound.play().catch(err => console.log('Audio play blocked: ', err));
+                logArea.style.display = 'none';
+                inputArea.style.display = 'none';
+                secretContent.style.display = 'block';
+
+                // Hide all videos first
+                document.querySelectorAll('.clue-video').forEach(video => {
+                    video.style.display = 'none';
+                });
+
+                const entry = passwordMap[guess];
+                secretText.textContent = `> SECRET WORD: ${entry.word}`;
+                secretPopup.textContent = entry.popup;
+                secretPopup.style.display = 'block';
+
+                // Show the correct video
+                const videoElement = document.getElementById(entry.video);
+                videoElement.style.display = 'block';
+                videoElement.play().catch(err => console.log('Video autoplay blocked: ', err));
+                startGlitch(entry, videoElement);
+            } else {
+                failureSound.play().catch(err => console.log('Audio play blocked: ', err));
+                const errorMessage = document.createElement('p');
+                errorMessage.style.color = '#ff3333';
+                errorMessage.textContent = `> Entering key: "${guess}"... ACCESS DENIED. TRY AGAIN.`;
+                logArea.appendChild(errorMessage);
+            }
+        });
+    </script>
+</body>
+</html>
