@@ -175,7 +175,7 @@
 
         <div id="secret-content">
             <p>> ACCESS GRANTED.</p>
-            <p id="secret-text" class="secret-text">> SECRET WORD: </p>
+            <p id="secret-text" class="secret-text">> Hello? </p>
             <p id="secret-popup" class="secret-popup"></p>
             <p>> PLAYING ARCHIVE.MP4...</p>
 
@@ -234,8 +234,8 @@
                     delay: 10000
                 }
             },
-            'password4': { video: 'clue-video4', word: 'CLUE FOUR', popup: 'Secret message four appears now.' },
-            'password5': { video: 'clue-video5', word: 'CLUE FIVE', popup: 'Secret message five appears now.' },
+            'hack': { : 'clue-video4', word: 'CLUE FOUR', popup: 'Secret message four appears now.' },
+            'dean': { image: 'goat.jpg', word: 'Hi', popup: 'thank you dean for being the goat' },
             'password6': { video: 'clue-video6', word: 'CLUE SIX', popup: 'Secret message six appears now.' }
         };
 
@@ -262,7 +262,7 @@
                 originalVideo.classList.remove('secret-video-glitch');
                 secretPopup.classList.remove('secret-glitch');
                 secretText.classList.remove('secret-glitch');
-                secretText.textContent = `> SECRET WORD: ${entry.glitch.targetWord}`;
+                secretText.textContent = `> Where am I? ${entry.glitch.targetWord}`;
                 secretPopup.textContent = entry.glitch.targetPopup;
                 targetVideo.style.display = 'block';
                 targetVideo.play().catch(err => console.log('Video autoplay blocked: ', err));
@@ -286,7 +286,7 @@
                 });
 
                 const entry = passwordMap[guess];
-                secretText.textContent = `> SECRET WORD: ${entry.word}`;
+                secretText.textContent = `> ... ${entry.word}`;
                 secretPopup.textContent = entry.popup;
                 secretPopup.style.display = 'block';
 
