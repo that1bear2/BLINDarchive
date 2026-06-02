@@ -177,7 +177,7 @@
             <p>> ACCESS GRANTED.</p>
             <p id="secret-text" class="secret-text">> Hello? </p>
             <p id="secret-popup" class="secret-popup"></p>
-            <p>> PLAYING ARCHIVE.MP4...</p>
+            <p>> ...</p>
 
             <video id="clue-video1" class="clue-video" controls>
                 <source src="clue.mp4" type="video/mp4">
@@ -234,7 +234,6 @@
                     delay: 10000
                 }
             },
-            'hack': { : 'clue-video4', word: 'CLUE FOUR', popup: 'Secret message four appears now.' },
             'dean': { image: 'goat.jpg', word: 'Hi', popup: 'thank you dean for being the goat' },
             'password6': { video: 'clue-video6', word: 'CLUE SIX', popup: 'Secret message six appears now.' }
         };
@@ -290,11 +289,21 @@
                 secretPopup.textContent = entry.popup;
                 secretPopup.style.display = 'block';
 
-                // Show the correct video
-                const videoElement = document.getElementById(entry.video);
-                videoElement.style.display = 'block';
-                videoElement.play().catch(err => console.log('Video autoplay blocked: ', err));
-                startGlitch(entry, videoElement);
+                // Show image or video based on entry type
+                if (entry.image) {
+                    const img = document.createElement('img');
+                    img.src = entry.image;
+                    img.style.width = '100%';
+                    img.style.maxWidth = '500px';
+                    img.style.border = '1px solid #ffffff';
+                    img.style.marginTop = '15px';
+                    secretContent.appendChild(img);
+                } else if (entry.video) {
+                    const videoElement = document.getElementById(entry.video);
+                    videoElement.style.display = 'block';
+                    videoElement.play().catch(err => console.log('Video autoplay blocked: ', err));
+                    startGlitch(entry, videoElement);
+                }
             } else {
                 failureSound.play().catch(err => console.log('Audio play blocked: ', err));
                 const errorMessage = document.createElement('p');
